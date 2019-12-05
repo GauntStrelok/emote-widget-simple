@@ -1,9 +1,9 @@
 $(async () => {
-    const clientId = 'gct24z0bpt832rurvqgn4m6kqja6kg'
     const myChannelName = 'itsatreee';
     const numberOfEmotesToSpawnPerIteration = 100;
-    const timeSpentRainingEmotes = 10000; // in milliseconds
-    const timeToWaitAfterRainingEmotes = 23000; // in milliseconds
+    const timeSpentRainingEmotes = 10; // in seconds
+    const timeToWaitAfterRainingEmotes = 23; // in seconds
+    const clientId = 'gct24z0bpt832rurvqgn4m6kqja6kg'
 
     function addHttpRequestHeaders(xhr) {
         xhr.setRequestHeader('Client-ID', clientId);
@@ -130,7 +130,7 @@ $(async () => {
     }
 
     // this first interval makes it so emotes rain immediately instead of waiting for the second interval to start
-    let interval = setInterval(addEmoteToContainer, (timeSpentRainingEmotes / numberOfEmotesToSpawnPerIteration));
+    let interval = setInterval(addEmoteToContainer, ((timeSpentRainingEmotes * 1000) / numberOfEmotesToSpawnPerIteration));
 
     // timeout to ensure the raining emotes stop after a certain amount of time
     setTimeout(() => {
@@ -139,11 +139,11 @@ $(async () => {
 
     // this interval will continually start and stop the raining of emotes.
     setInterval(() => {
-        interval = setInterval(addEmoteToContainer, (timeSpentRainingEmotes / numberOfEmotesToSpawnPerIteration));
+        interval = setInterval(addEmoteToContainer, ((timeSpentRainingEmotes * 1000) / numberOfEmotesToSpawnPerIteration));
         setTimeout(() => {
             clearInterval(interval);
         }, timeSpentRainingEmotes);
-    }, timeToWaitAfterRainingEmotes);
+    }, timeToWaitAfterRainingEmotes * 1000);
 
 });
 

@@ -36,7 +36,14 @@ Copy the **Client ID** and replace the value on line 6 in **main.js**. (Make sur
 
 #### URL Parameters
 
+`Example: url?showTwitch=true&showBttv=false&totalEmotes=100&secondsToRain=10&secondsToWaitForRain=23&channel=itsatreee&numTimesToRepeat=1`
+
 Param | Default Value | Description
 --- | --- | ---
-Show Twitch Emotes | true | Setting this value to true includes Twitch emotes in the random pool of visible emotes.
-Show Bttv Emotes | true | Setting this value to true includes Bttv emotes in the random pool of visible emotes.
+showTwitch | true | Determines if Twitch emotes are added to the random pool of visible emotes.
+showBttv | true | Determines if Bttv emotes are added to the random pool of visible emotes.
+totalEmotes | 100 | Determines the total emotes create in one iteration.
+secondsToRain | 10 | Determines for how long emotes will be created.
+secondsToWaitForRain | 23 | How long to wait to start raining emotes again after they are stopped.
+channel | itsatreee | The channel whose emtoes to display.
+numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous raining emotes!!

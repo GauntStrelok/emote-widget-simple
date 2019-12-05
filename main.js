@@ -8,7 +8,8 @@ $(async () => {
         totalEmotes: 100,
         secondsToRain: 10,
         secondsToWaitForRain: 23,
-        channel: 'itsatreee'
+        channel: 'itsatreee',
+        numTimesToRepeat: 1
     };
 
     console.log('og params', emoteConfig);
@@ -17,7 +18,10 @@ $(async () => {
         const params = window.location.search.substring(1).split('&');
         params.forEach((param, index) => {
             const keyValuePair = param.split('=');
-            if (!keyValuePair[1] || keyValuePair[1] === 'true' || keyValuePair[1] === 'false') {
+            if (!keyValuePair[1]) {
+                return;
+            }
+            else if (keyValuePair[1] === 'true' || keyValuePair[1] === 'false') {
                 emoteConfig[keyValuePair[0]] = keyValuePair[1] === 'true';
             } else {
                 emoteConfig[keyValuePair[0]] = keyValuePair[1];
@@ -166,18 +170,24 @@ $(async () => {
     // this first interval makes it so emotes rain immediately instead of waiting for the second interval to start
     let interval = setInterval(addEmoteToContainer, ((emoteConfig.secondsToRain * 1000) / emoteConfig.totalEmotes));
 
-    // timeout to ensure the raining emotes stop after a certain amount of time
-    setTimeout(() => {
-        clearInterval(interval);
-    }, emoteConfig.secondsToRain * 1000);
-
-    // this interval will continually start and stop the raining of emotes.
-    setInterval(() => {
-        interval = setInterval(addEmoteToContainer, ((emoteConfig.secondsToRain * 1000) / emoteConfig.totalEmotes));
+    if (emoteConfig.numTimesToRepeat != -1) {
+        // timeout to ensure the raining emotes stop after a certain amount of time
         setTimeout(() => {
             clearInterval(interval);
+            emoteConfig.numTimesToRepeat--;
         }, emoteConfig.secondsToRain * 1000);
-    }, emoteConfig.secondsToWaitForRain * 1000);
+
+        // this interval will continually start and stop the raining of emotes.
+        setInterval(() => {
+            if (emoteConfig.numTimesToRepeat > 0) {
+                interval = setInterval(addEmoteToContainer, ((emoteConfig.secondsToRain * 1000) / emoteConfig.totalEmotes));
+                setTimeout(() => {
+                    clearInterval(interval);
+                    emoteConfig.numTimesToRepeat--;
+                }, emoteConfig.secondsToRain * 1000);
+            }
+        }, emoteConfig.secondsToWaitForRain * 1000);
+    }
 
 });
 

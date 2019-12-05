@@ -1,9 +1,12 @@
 $(async () => {
     const myChannelName = 'itsatreee';
+    const clientId = 'gct24z0bpt832rurvqgn4m6kqja6kg'
     const numberOfEmotesToSpawnPerIteration = 100;
     const timeSpentRainingEmotes = 10; // in seconds
     const timeToWaitAfterRainingEmotes = 23; // in seconds
-    const clientId = 'gct24z0bpt832rurvqgn4m6kqja6kg'
+    const displayBttvEmotes = true;
+    const displayTwitchEmotes = true;
+    const defaultImageUrl = 'https://cdn.betterttv.net/emote/5d3c7708c77b14468fe92fc4/2x';
 
     function addHttpRequestHeaders(xhr) {
         xhr.setRequestHeader('Client-ID', clientId);
@@ -22,14 +25,14 @@ $(async () => {
             return await http(`https://api.twitchemotes.com/api/v4/channels/${resolvedUserId}`);
         }).then((data) => {
             // console.log('getTwitchEmotes', data);
-            return data;
+            return data.emotes;
         }, errorHandler);
     }
 
     async function getBttvEmotes(channelName) {
         return await http(`https://api.betterttv.net/2/channels/${channelName}`).then((data) => {
             // console.log('getBttvEmotes', data);
-            return data;
+            return data.emotes;
         }, errorHandler);
     }
 
@@ -54,8 +57,8 @@ $(async () => {
     const bttvEmotes = await getBttvEmotes(myChannelName);
 
     function getRandomTwitchEmote() {
-        const randomEmoteIndex = randomNumberBetween(0, twitchEmotes.emotes.length - 1);
-        const randomEmote = twitchEmotes.emotes[randomEmoteIndex];
+        const randomEmoteIndex = randomNumberBetween(0, twitchEmotes.length - 1);
+        const randomEmote = twitchEmotes[randomEmoteIndex];
         const emoteId = randomEmote.id;
         // the default twitch emote sizes are 1.0, 2.0, 3.0
         const emoteSize = `${randomNumberBetween(1, 3)}.0`;
@@ -71,8 +74,8 @@ $(async () => {
     }
 
     function getRandomBttvEmote() {
-        const randomEmoteIndex = randomNumberBetween(0, bttvEmotes.emotes.length - 1);
-        const randomEmote = bttvEmotes.emotes[randomEmoteIndex];
+        const randomEmoteIndex = randomNumberBetween(0, bttvEmotes.length - 1);
+        const randomEmote = bttvEmotes[randomEmoteIndex];
         const emoteId = randomEmote.id;
 
         // the default bttv emote sizes are 1x, 2x, 3x
@@ -89,8 +92,19 @@ $(async () => {
     }
 
     function getRandomEmote() {
+        const emoteChoices = [];
+        const emote = { url: defaultImageUrl, size: 56 };
+        if (displayTwitchEmotes && twitchEmotes.length > 0) {
+            emoteChoices.push(getRandomTwitchEmote());
+        }
+        if (displayBttvEmotes && bttvEmotes.length > 0) {
+            emoteChoices.push(getRandomBttvEmote());
+        }
+        if (emoteChoices.length === 0) {
+            emoteChoices.push(emote);
+        }
         // pick a random number, if it is even make a twitch emote otherwise bttv emote. toggle
-        return randomNumberBetween(0, 100) % 2 === 0 ? getRandomTwitchEmote() : getRandomBttvEmote();
+        return emoteChoices[randomNumberBetween(0, emoteChoices.length - 1)];
     }
 
     function addEmoteToContainer() {
@@ -135,14 +149,14 @@ $(async () => {
     // timeout to ensure the raining emotes stop after a certain amount of time
     setTimeout(() => {
         clearInterval(interval);
-    }, timeSpentRainingEmotes);
+    }, timeSpentRainingEmotes * 1000);
 
     // this interval will continually start and stop the raining of emotes.
     setInterval(() => {
         interval = setInterval(addEmoteToContainer, ((timeSpentRainingEmotes * 1000) / numberOfEmotesToSpawnPerIteration));
         setTimeout(() => {
             clearInterval(interval);
-        }, timeSpentRainingEmotes);
+        }, timeSpentRainingEmotes * 1000);
     }, timeToWaitAfterRainingEmotes * 1000);
 
 });

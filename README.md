@@ -7,7 +7,8 @@
 
 ### For starters...
 
-This widget is driven by two pieces of information:
+This widget is driven by two pieces of information: `clientId` and `channel name`.
+
 #### Client ID
 [Twitch Docs](https://dev.twitch.tv/docs/v5#getting-a-client-id)  
 This is used for twitch api authentication. Creating one is simple and is used for non-authenticating requests when not accompanied with an OAuth token. It will look something like this `gn4m6kqja6gkcgt24z0pbt823rurvq`.

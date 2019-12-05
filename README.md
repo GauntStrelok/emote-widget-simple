@@ -31,7 +31,7 @@ Copy the **Client ID** and replace the value on line 2 in **main.js**. (Make sur
 
 #### Channel Name
 
-The name of the channel you want to pull emotes from. In this example twitch channel https://www.twitch.tv/itsatreee, `itsatreee` is the channel name.
+The name of the channel you want to pull emotes from. In this example, https://www.twitch.tv/itsatreee `itsatreee` is the channel name.
 
 ### Configuration
 

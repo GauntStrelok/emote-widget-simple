@@ -1,21 +1,30 @@
 $(async () => {
-    const myChannelName = 'itsatreee';
     const clientId = 'gct24z0bpt832rurvqgn4m6kqja6kg'
-    const numberOfEmotesToSpawnPerIteration = 100;
-    const timeSpentRainingEmotes = 10; // in seconds
-    const timeToWaitAfterRainingEmotes = 23; // in seconds
-    const displayBttvEmotes = true;
-    const displayTwitchEmotes = true;
     const defaultImageUrl = 'https://cdn.betterttv.net/emote/5d3c7708c77b14468fe92fc4/2x';
 
-    const paramObject = {};
+    const emoteConfig = {
+        showTwitch: true,
+        showBttv: true,
+        totalEmotes: 100,
+        secondsToRain: 10,
+        secondsToWaitForRain: 23,
+        channel: 'itsatreee'
+    };
+
+    console.log('og params', emoteConfig);
+
     function getPageParams() {
         const params = window.location.search.substring(1).split('&');
         params.forEach((param, index) => {
             const keyValuePair = param.split('=');
-            paramObject[keyValuePair[0]] = keyValuePair[1];
+            if (!keyValuePair[1] || keyValuePair[1] === 'true' || keyValuePair[1] === 'false') {
+                emoteConfig[keyValuePair[0]] = keyValuePair[1] === 'true';
+            } else {
+                emoteConfig[keyValuePair[0]] = keyValuePair[1];
+            }
         });
     }
+    console.log('final params', emoteConfig);
 
     function addHttpRequestHeaders(xhr) {
         xhr.setRequestHeader('Client-ID', clientId);
@@ -61,9 +70,9 @@ $(async () => {
 
     };
 
-    const twitchEmotes = await getTwitchEmotes(myChannelName);
+    const twitchEmotes = await getTwitchEmotes(emoteConfig.channel);
 
-    const bttvEmotes = await getBttvEmotes(myChannelName);
+    const bttvEmotes = await getBttvEmotes(emoteConfig.channel);
 
     function getRandomTwitchEmote() {
         const randomEmoteIndex = randomNumberBetween(0, twitchEmotes.length - 1);
@@ -103,10 +112,10 @@ $(async () => {
     function getRandomEmote() {
         const emoteChoices = [];
         const emote = { url: defaultImageUrl, size: 56 };
-        if (displayTwitchEmotes && twitchEmotes.length > 0) {
+        if (emoteConfig.showTwitch && twitchEmotes.length > 0) {
             emoteChoices.push(getRandomTwitchEmote());
         }
-        if (displayBttvEmotes && bttvEmotes.length > 0) {
+        if (emoteConfig.showBttv && bttvEmotes.length > 0) {
             emoteChoices.push(getRandomBttvEmote());
         }
         if (emoteChoices.length === 0) {
@@ -155,20 +164,20 @@ $(async () => {
     }
 
     // this first interval makes it so emotes rain immediately instead of waiting for the second interval to start
-    let interval = setInterval(addEmoteToContainer, ((timeSpentRainingEmotes * 1000) / numberOfEmotesToSpawnPerIteration));
+    let interval = setInterval(addEmoteToContainer, ((emoteConfig.secondsToRain * 1000) / emoteConfig.totalEmotes));
 
     // timeout to ensure the raining emotes stop after a certain amount of time
     setTimeout(() => {
         clearInterval(interval);
-    }, timeSpentRainingEmotes * 1000);
+    }, emoteConfig.secondsToRain * 1000);
 
     // this interval will continually start and stop the raining of emotes.
     setInterval(() => {
-        interval = setInterval(addEmoteToContainer, ((timeSpentRainingEmotes * 1000) / numberOfEmotesToSpawnPerIteration));
+        interval = setInterval(addEmoteToContainer, ((emoteConfig.secondsToRain * 1000) / emoteConfig.totalEmotes));
         setTimeout(() => {
             clearInterval(interval);
-        }, timeSpentRainingEmotes * 1000);
-    }, timeToWaitAfterRainingEmotes * 1000);
+        }, emoteConfig.secondsToRain * 1000);
+    }, emoteConfig.secondsToWaitForRain * 1000);
 
 });
 

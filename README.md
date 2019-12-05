@@ -31,3 +31,12 @@ Copy the **Client ID** and replace the value on line 6 in **main.js**. (Make sur
 #### Channel Name
     - The name of the channel you want to pull emotes from.
     - In this example twitch channel https://www.twitch.tv/itsatreee, itsatreee is the channel name.
+
+### Configuration
+
+#### URL Parameters
+
+Param | Default Value | Description
+--- | --- | ---
+Show Twitch Emotes | true | Setting this value to true includes Twitch emotes in the random pool of visible emotes.
+Show Bttv Emotes | true | Setting this value to true includes Bttv emotes in the random pool of visible emotes.

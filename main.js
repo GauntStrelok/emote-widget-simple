@@ -8,6 +8,15 @@ $(async () => {
     const displayTwitchEmotes = true;
     const defaultImageUrl = 'https://cdn.betterttv.net/emote/5d3c7708c77b14468fe92fc4/2x';
 
+    const paramObject = {};
+    function getPageParams() {
+        const params = window.location.search.substring(1).split('&');
+        params.forEach((param, index) => {
+            const keyValuePair = param.split('=');
+            paramObject[keyValuePair[0]] = keyValuePair[1];
+        });
+    }
+
     function addHttpRequestHeaders(xhr) {
         xhr.setRequestHeader('Client-ID', clientId);
         xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
@@ -138,6 +147,8 @@ $(async () => {
     function randomNumberBetween(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
+
+    getPageParams();
 
     function errorHandler(error) {
         console.warn('thrown error', error);

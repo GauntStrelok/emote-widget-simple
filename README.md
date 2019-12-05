@@ -7,6 +7,16 @@
 
 ### For starters...
 
+Clone or [download](https://github.com/Treee/emote-widget-simple/archive/master.zip) this repository. If you downlaod the zip, unzip the contents wherever you want.
+
+File Name | Description
+--- | ---
+screen-display.hmtl  | HTML page that will render the raining emotes. Open this file locally with your browser to add as a browser source in OBS.
+main.js  |  Javascript file that performs the majority of functionality. This is the place to modify stuff if you know what you are doing.
+stylezz.css  | This is our css file that defines the style of our basic html components and the animations.
+README.md  | Helpful file that contains information about this widget. (What you are reading right now.)
+LICENSE.txt  | Read this if you are looking to take the code and resell.
+
 This widget is driven by two pieces of information: `clientId` and `channel name`.
 
 #### Client ID

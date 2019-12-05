@@ -17,7 +17,7 @@ stylezz.css  | This is our css file that defines the style of our basic html com
 README.md  | Helpful file that contains information about this widget. (What you are reading right now.)
 LICENSE.txt  | Read this if you are looking to take the code and resell.
 
-This widget is driven by two pieces of information: `clientId` and `channel name`.
+This widget is driven by two pieces of information: `clientId` and `channel name`. When you have set both values (see below) you can open the `screen-display.html` file in your browser and copy the url for a **Browser Source** in OBS. Use the defined query string parameters below to configure different results or edit the source.
 
 #### Client ID
 [Twitch Docs](https://dev.twitch.tv/docs/v5#getting-a-client-id)  

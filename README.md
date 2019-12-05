@@ -43,17 +43,17 @@ channel (Required) | itsatreee | The channel whose emtoes to display
 clientId (Required) |  | The client id of your Twitch application created above
 showTwitch | true | Determines if Twitch emotes are added to the random pool of visible emotes.
 showBttv | true | Determines if Bttv emotes are added to the random pool of visible emotes.
-totalEmotes | 100 | Determines the total emotes create in one iteration.
+totalEmotes | 100 | Determines the total emotes to create in one iteration.
 secondsToRain | 10 | Determines for how long emotes will be created.
 secondsToWaitForRain | 23 | How long to wait to start raining emotes again after they are stopped.
 numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous raining emotes!!
 
 `Examples:`
-- file:///C:/path/to/emote-widget-simple/screen-display.html?channel=itsatreee&numTimesToRepeat=1`
+- `file:///C:/path/to/emote-widget-simple/screen-display.html?channel=itsatreee&numTimesToRepeat=1`
   - Show Twitch and Bttv emotes from ItsATreee's channel
   - Only rain emotes once.
 
-- file:///C:/path/to/emote-widget-simple/screen-display.html?showTwitch=true&showBttv=false&totalEmotes=100&secondsToRain=10&secondsToWaitForRain=23&channel=itsatreee&numTimesToRepeat=1`
+- `file:///C:/path/to/emote-widget-simple/screen-display.html?showTwitch=true&showBttv=false&totalEmotes=100&secondsToRain=10&secondsToWaitForRain=23&channel=itsatreee&numTimesToRepeat=1`
   - Shows Twitch Emotes
   - Hides Bttv Emotes
   - Total Emotes shown will be 100
@@ -62,7 +62,7 @@ numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous rain
   - Show emotes from ItsATreee's channel
   - Only rain emotes once.
 
-- file:///C:/path/to/emote-widget-simple/screen-display.html?showTwitch=false&showBttv=true&totalEmotes=250&secondsToRain=15&secondsToWaitForRain=35&channel=itsatreee&numTimesToRepeat=-1`
+- `file:///C:/path/to/emote-widget-simple/screen-display.html?showTwitch=false&showBttv=true&totalEmotes=250&secondsToRain=15&secondsToWaitForRain=35&channel=itsatreee&numTimesToRepeat=-1`
   - Hides Twitch Emotes
   - Shows Bttv Emotes
   - Total Emotes shown will be 250

@@ -56,6 +56,7 @@ totalEmotes | 100 | Determines the total emotes to create in one iteration.
 secondsToRain | 10 | Determines for how long emotes will be created.
 secondsToWaitForRain | 23 | How long to wait to start raining emotes again after they are stopped.
 numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous raining emotes!!
+`Defaults are rough values I found good enough during development. If you feel yours are better let me know so I can compare.`
 
 `Examples:`
 - `file:///C:/path/to/emote-widget-simple/screen-display.html?channel=itsatreee&numTimesToRepeat=1`

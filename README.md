@@ -40,7 +40,6 @@ The name of the channel you want to pull emotes from. In this example, https://w
 Param | Default Value | Description
 --- | --- | ---
 channel (Required) | itsatreee | The channel whose emtoes to display
-clientId (Required) |  | The client id of your Twitch application created above
 showTwitch | true | Determines if Twitch emotes are added to the random pool of visible emotes.
 showBttv | true | Determines if Bttv emotes are added to the random pool of visible emotes.
 totalEmotes | 100 | Determines the total emotes to create in one iteration.
@@ -53,20 +52,7 @@ numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous rain
   - Show Twitch and Bttv emotes from ItsATreee's channel
   - Only rain emotes once.
 
-- `file:///C:/path/to/emote-widget-simple/screen-display.html?showTwitch=true&showBttv=false&totalEmotes=100&secondsToRain=10&secondsToWaitForRain=23&channel=itsatreee&numTimesToRepeat=1`
-  - Shows Twitch Emotes
-  - Hides Bttv Emotes
-  - Total Emotes shown will be 100
-  - Emotes will be created at the top of the screen for 10 seconds
-  - Emotes will start raining again after 23 seconds total
-  - Show emotes from ItsATreee's channel
-  - Only rain emotes once.
-
-- `file:///C:/path/to/emote-widget-simple/screen-display.html?showTwitch=false&showBttv=true&totalEmotes=250&secondsToRain=15&secondsToWaitForRain=35&channel=itsatreee&numTimesToRepeat=-1`
-  - Hides Twitch Emotes
-  - Shows Bttv Emotes
-  - Total Emotes shown will be 250
-  - Emotes will be created at the top of the screen for 15 seconds
-  - Emotes will start raining again after 35 seconds total
-  - Show emotes from ItsATreee's channel
+- `file:///C:/path/to/emote-widget-simple/screen-display.html?channel=itsatreee&numTimesToRepeat=-1&showBttv=true&showTwitch=false`
+  - Show Bttv and hide Twitch emotes from ItsATreee's channel
   - Emotes will rain continuously
+

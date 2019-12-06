@@ -11,13 +11,13 @@ Clone or [download](https://github.com/Treee/emote-widget-simple/archive/master.
 
 File Name | Description
 --- | ---
-screen-display.hmtl  | HTML page that will render the raining emotes. Open this file locally with your browser to add as a browser source in OBS.
-main.js  |  Javascript file that performs the majority of functionality. This is the place to modify stuff if you know what you are doing.
+index.hmtl  | HTML page that will render the raining emotes. Open this file locally with your browser to add as a browser source in OBS.
+index.js  |  Javascript file that performs the majority of functionality. This is the place to modify stuff if you know what you are doing.
 stylezz.css  | This is our css file that defines the style of our basic html components and the animations.
 README.md  | Helpful file that contains information about this widget. (What you are reading right now.)
 LICENSE.txt  | Read this if you are looking to take the code and resell.
 
-This widget is driven by two pieces of information: `clientId` and `channel name`. When you have set both values (see below) you can open the `screen-display.html` file in your browser and copy the url for a **Browser Source** in OBS. Use the defined query string parameters below to configure different results or edit the source.
+This widget is driven by two pieces of information: `clientId` and `channel name`. When you have set both values (see below) you can open the `index.html` file in your browser and copy the url for a **Browser Source** in OBS. Use the defined query string parameters below to configure different results or edit the source.
 
 #### Client ID
 [Twitch Docs](https://dev.twitch.tv/docs/v5#getting-a-client-id)  
@@ -36,7 +36,7 @@ Once logged in, navigate to the [Application Dashboard](https://dev.twitch.tv/co
 
 Click into the newly created application. Find the **Client ID** near the bottom. This is not a secret value but is a unique identifier for the application.
 
-Copy the **Client ID** and replace the value on line 2 in **main.js**. (Make sure the client id is between the tick marks; 'clientId')
+Copy the **Client ID** and replace the value on line 2 in **index.js**. (Make sure the client id is between the tick marks; 'clientId')
 - `const clientId = 'gn4m6kqja6gkcgt24z0pbt823rurvq'`
 
 #### Channel Name
@@ -60,11 +60,11 @@ numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous rain
 `Defaults are rough values I found good enough during development. If you feel yours are better let me know so I can compare.`
 
 `Examples:`
-- `file:///C:/path/to/emote-widget-simple/screen-display.html?channel=itsatreee&numTimesToRepeat=1`
+- `file:///C:/path/to/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=1`
   - Show Twitch and Bttv emotes from ItsATreee's channel
   - Only rain emotes once.
 
-- `file:///C:/path/to/emote-widget-simple/screen-display.html?channel=itsatreee&numTimesToRepeat=-1&showBttv=true&showTwitch=false`
+- `file:///C:/path/to/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=-1&showBttv=true&showTwitch=false`
   - Show Bttv and hide Twitch emotes from ItsATreee's channel
   - Emotes will rain continuously
 

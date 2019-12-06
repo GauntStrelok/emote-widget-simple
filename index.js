@@ -9,7 +9,8 @@ $(async () => {
         secondsToRain: 10,
         secondsToWaitForRain: 23,
         channel: 'itsatreee',
-        numTimesToRepeat: 1
+        numTimesToRepeat: 1,
+        single: ''
     };
 
     async function getPageParams() {
@@ -44,8 +45,15 @@ $(async () => {
         }).then(async (resolvedUserId) => {
             return await http(`https://api.twitchemotes.com/api/v4/channels/${resolvedUserId}`);
         }).then((data) => {
-            // console.log('getTwitchEmotes', data);
-            return data.emotes || [];
+            let emotes = data.emotes || [];
+            // console.log('raw twitch emotes', emotes);
+            if (emoteConfig.single !== '') {
+                emotes = emotes.filter((emote) => {
+                    return emote.code === emoteConfig.single;
+                });
+            }
+            // console.log('twitch emotes', emotes);
+            return emotes;
         }, (error) => {
             return [];
         });
@@ -53,8 +61,15 @@ $(async () => {
 
     async function getBttvEmotes(channelName) {
         return await http(`https://api.betterttv.net/2/channels/${channelName}`).then((data) => {
-            // console.log('getBttvEmotes', data);
-            return data.emotes || [];
+            let emotes = data.emotes || [];
+            // console.log('raw bttv emotes', emotes);
+            if (emoteConfig.single !== '') {
+                emotes = emotes.filter((emote) => {
+                    return emote.code === emoteConfig.single;
+                });
+            }
+            // console.log('bttv emotes', emotes);
+            return emotes;
         }, (error) => {
             return [];
         });

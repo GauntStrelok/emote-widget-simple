@@ -50,6 +50,7 @@ The name of the channel you want to pull emotes from. In this example, https://w
 Param | Default Value | Description
 --- | --- | ---
 channel (Required) | itsatreee | The channel whose emtoes to display
+single |  | This will override emotes and only display a single emote base on its emote chatcode. Kappa
 showTwitch | true | Determines if Twitch emotes are added to the random pool of visible emotes.
 showBttv | true | Determines if Bttv emotes are added to the random pool of visible emotes.
 totalEmotes | 100 | Determines the total emotes to create in one iteration.

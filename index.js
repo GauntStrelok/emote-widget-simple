@@ -46,14 +46,18 @@ $(async () => {
         }).then((data) => {
             // console.log('getTwitchEmotes', data);
             return data.emotes || [];
-        }, errorHandler);
+        }, (error) => {
+            return [];
+        });
     }
 
     async function getBttvEmotes(channelName) {
         return await http(`https://api.betterttv.net/2/channels/${channelName}`).then((data) => {
             // console.log('getBttvEmotes', data);
             return data.emotes || [];
-        }, errorHandler);
+        }, (error) => {
+            return [];
+        });
     }
 
     const http = (path, beforeSendCallback) => {

@@ -21,7 +21,7 @@ $(async () => {
             if (!keyValuePair[1]) {
                 return;
             }
-            else if (keyValuePair[1] === 'true' || keyValuePair[1] === 'false') {
+            else if (keyValuePair[1] === 'true' || keyValuePair[1] === 'false' && keyValuePair[0] !== 'channel') {
                 emoteConfig[keyValuePair[0]] = keyValuePair[1] === 'true';
             } else {
                 emoteConfig[keyValuePair[0]] = keyValuePair[1];

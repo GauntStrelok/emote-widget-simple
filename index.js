@@ -45,14 +45,14 @@ $(async () => {
             return await http(`https://api.twitchemotes.com/api/v4/channels/${resolvedUserId}`);
         }).then((data) => {
             // console.log('getTwitchEmotes', data);
-            return data.emotes;
+            return data.emotes || [];
         }, errorHandler);
     }
 
     async function getBttvEmotes(channelName) {
         return await http(`https://api.betterttv.net/2/channels/${channelName}`).then((data) => {
             // console.log('getBttvEmotes', data);
-            return data.emotes;
+            return data.emotes || [];
         }, errorHandler);
     }
 

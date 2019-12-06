@@ -1,7 +1,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 # Emote Widget
 
-![test](https://static-cdn.jtvnw.net/emoticons/v1/300929371/2.0)
+![test](https://treee.github.io/emote-widget-simple/?showBttv=false&numTimesToRepeat=1)
 
 ## How to Use
 

@@ -12,9 +12,7 @@ $(async () => {
         numTimesToRepeat: 1
     };
 
-    console.log('og params', emoteConfig);
-
-    function getPageParams() {
+    async function getPageParams() {
         const params = window.location.search.substring(1).split('&');
         params.forEach((param, index) => {
             const keyValuePair = param.split('=');
@@ -28,7 +26,7 @@ $(async () => {
             }
         });
     }
-    console.log('final params', emoteConfig);
+    await getPageParams();
 
     function addHttpRequestHeaders(xhr) {
         xhr.setRequestHeader('Client-ID', clientId);
@@ -160,8 +158,6 @@ $(async () => {
     function randomNumberBetween(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
-
-    getPageParams();
 
     function errorHandler(error) {
         console.warn('thrown error', error);

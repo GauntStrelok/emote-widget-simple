@@ -1,7 +1,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 # Emote Widget
 
-![test](https://static-cdn.jtvnw.net/emoticons/v1/300929371/2.0)
+[Example](https://treee.github.io/emote-widget-simple/?channel=itsatreee&showBttv=false&numTimesToRepeat=1)
 
 ## How to Use
 
@@ -60,11 +60,11 @@ numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous rain
 `Defaults are rough values I found good enough during development. If you feel yours are better let me know so I can compare.`
 
 `Examples:`
-- `file:///C:/path/to/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=1`
+- https://treee.github.io/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=1
   - Show Twitch and Bttv emotes from ItsATreee's channel
   - Only rain emotes once.
 
-- `file:///C:/path/to/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=-1&showBttv=true&showTwitch=false`
+- https://treee.github.io/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=-1&showBttv=true&showTwitch=false
   - Show Bttv and hide Twitch emotes from ItsATreee's channel
   - Emotes will rain continuously
 

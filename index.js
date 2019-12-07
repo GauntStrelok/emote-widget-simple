@@ -1,6 +1,10 @@
-$(async () => {
+(async () => {
     const clientId = 'gct24z0bpt832rurvqgn4m6kqja6kg'
     const defaultImageUrl = 'https://cdn.betterttv.net/emote/5d3c7708c77b14468fe92fc4/2x';
+
+    const headers = new Headers();
+    headers.append('Client-ID', clientId);
+    headers.append('Accept', 'application/vnd.twitchtv.v5+json');
 
     const emoteConfig = {
         showTwitch: true,
@@ -9,9 +13,11 @@ $(async () => {
         secondsToRain: 10,
         secondsToWaitForRain: 23,
         channel: 'itsatreee',
-        numTimesToRepeat: 1,
+        numTimesToRepeat: 5,
         single: ''
     };
+
+
 
     async function getPageParams() {
         const params = window.location.search.substring(1).split('&');
@@ -29,22 +35,20 @@ $(async () => {
     }
     await getPageParams();
 
-    function addHttpRequestHeaders(xhr) {
-        xhr.setRequestHeader('Client-ID', clientId);
-        xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
-    }
-
     async function getTwitchEmotes(channelName) {
-        return await http(`https://api.twitch.tv/kraken/users?login=${channelName}`, addHttpRequestHeaders).then((data) => {
+        return await fetch(`https://api.twitch.tv/kraken/users?login=${channelName}`, {headers}).then(async (response) => {
             // console.log('user', data.users);
+            let data = await response.json();
             let userId = -9999;
             if (data.users.length > 0) {
                 userId = data.users[0]._id;
             }
             return userId
-        }).then(async (resolvedUserId) => {
-            return await http(`https://api.twitchemotes.com/api/v4/channels/${resolvedUserId}`);
-        }).then((data) => {
+        }).then(async (response) => {
+            let resolvedUserId = await response.json();
+            return await fetch(`https://api.twitchemotes.com/api/v4/channels/${resolvedUserId}`);
+        }).then(async (response) => {
+            let data = await response.json();
             let emotes = data.emotes || [];
             // console.log('raw twitch emotes', emotes);
             if (emoteConfig.single !== '') {
@@ -60,7 +64,8 @@ $(async () => {
     }
 
     async function getBttvEmotes(channelName) {
-        return await http(`https://api.betterttv.net/2/channels/${channelName}`).then((data) => {
+        return await fetch(`https://api.betterttv.net/2/channels/${channelName}`).then(async (response) => {
+            let data = await response.json();
             let emotes = data.emotes || [];
             // console.log('raw bttv emotes', emotes);
             if (emoteConfig.single !== '') {
@@ -74,20 +79,6 @@ $(async () => {
             return [];
         });
     }
-
-    const http = (path, beforeSendCallback) => {
-        if (!beforeSendCallback) {
-            beforeSendCallback = function (xhr) { }
-        }
-        return $.ajax({
-            url: path,
-            beforeSend: beforeSendCallback,
-            data: {},
-            success: (data) => {
-                // console.log('success', data);
-            },
-            dataType: 'json'
-        });
 
     };
 
@@ -204,5 +195,4 @@ $(async () => {
         }, emoteConfig.secondsToWaitForRain * 1000);
     }
 
-});
-
+})();

@@ -13,7 +13,7 @@
         secondsToRain: 10,
         secondsToWaitForRain: 23,
         channel: 'itsatreee',
-        numTimesToRepeat: 5,
+        numTimesToRepeat: 1,
         single: ''
     };
 

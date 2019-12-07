@@ -63,9 +63,13 @@ numTimesToRepeat | 1 | The number of times to repeat. Use -1 for continuous rain
 `Examples:`
 - https://treee.github.io/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=1
   - Show Twitch and Bttv emotes from ItsATreee's channel
-  - Only rain emotes once.
+  - Only rain emotes once
 
 - https://treee.github.io/emote-widget-simple/index.html?channel=itsatreee&numTimesToRepeat=-1&showBttv=true&showTwitch=false
   - Show Bttv and hide Twitch emotes from ItsATreee's channel
   - Emotes will rain continuously
+
+- https://treee.github.io/emote-widget-simple/?channel=itsatreee&single=itsatrEeCool
+  - Show the single emote itsatrEeCool
+  - Only rain emotes once
 
